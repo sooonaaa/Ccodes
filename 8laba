@@ -1,0 +1,28 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <windows.h>
+struct strany {
+	char nazvanie[20];
+	char stolica[20];
+	int  god_osnovaniya;
+	int  kolvo_naseleniya;
+	int  ploshad;
+    };
+int main() {
+	const int NotUsed = system("color B4");
+	strany svedeniya_o_stranah[20];
+	int N = 0, k;
+	do {
+		printf("Please, enter the number of countries (no more than 20): ");
+		scanf("%d", &N);
+	} while ((N <= 0) || (N > 20));
+	k = N;
+	//for (int i = 0; i < N; i++) {
+	//	scanf("%d", &svedeniya_o_stranah[i]);
+	//}
+	printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 201, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 203, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 203, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 203, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 203, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 187 );
+	printf("%c\t%c\t%c\t%c\t%c\t%c\t%c     %c%c%c%c%c%c\t%c\n", 186, 252, 186, 105, 186, 106, 186, 82, 101, 115, 117, 108, 116, 186);
+	//for (int i = 0; i < N; i++) {
+	//	printf("%d", &svedeniya_o_stranah[i]);
+	//}
+}
