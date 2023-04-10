@@ -10,7 +10,7 @@ struct strany {																	//создание структуры "стра�
 	int  ploshad;
 };
 int func(int i, strany svedeniya_o_stranah[20], int* N) {
-	for (i = 0; i < *N; i++) {
+	
 		printf("Vvedite nazvanie strany: ");
 		scanf("%c", (svedeniya_o_stranah[i]).nazvanie);
 		printf("Vvedite stolicu strany: ");
@@ -21,7 +21,7 @@ int func(int i, strany svedeniya_o_stranah[20], int* N) {
 		scanf("%d", (svedeniya_o_stranah[i]).naselenie);
 		printf("Vvedite ploshad strany: ");
 		scanf("%d", (svedeniya_o_stranah[i]).ploshad);
-	}
+	
 }
 int main() {
 	const int NotUsed = system("color B4");
