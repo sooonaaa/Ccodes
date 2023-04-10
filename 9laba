@@ -41,3 +41,47 @@ void Utka::kryakat() {
 	for (int i = 0; i < 100; i++)
 		printf("krya!\n");
 }
+
+
+1)
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include "Kvadr.h"
+#include <math.h>
+int main() {
+	Kvadr kvadratnyi;
+	kvadratnyi.radius();
+}
+2)
+#pragma once
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+class Kvadr
+{
+private:
+	char name[10];
+	int storona;
+public:
+	Kvadr();
+	void radius();
+};
+
+
+3)
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include "Kvadr.h"
+#include <math.h>
+float str = 0.0;
+Kvadr::Kvadr() {
+	printf("Vvedite imya kvara: ");
+	scanf("%s", name);
+	printf("Vvedite rost kvadra: ");
+	scanf("%d", &storona);
+	}
+void Kvadr::radius() {
+	printf("radius opisannogo kruga: ");
+	str= storona / sqrt(2);
+	printf("%f", str);
+}
