@@ -1,0 +1,43 @@
+В файле main.cpp
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include "Utka.h"
+
+int main(){
+	Utka utenok;
+	utenok.kryakat();
+
+}
+
+В файле Utka.h  (описываем класс):
+
+#pragma once
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+class Utka
+{
+	// svoistva
+private:
+	char name[20];
+	float w;
+	//deistvia
+public:
+    Utka();
+	void kryakat();
+
+};
+
+В файле Utka.cpp : 
+
+#include "Utka.h"
+#include <stdio.h>
+Utka::Utka() {
+	scanf("%s", &name);
+	scanf("%f", &w);
+}
+void Utka::kryakat() {
+	for (int i = 0; i < 100; i++)
+		printf("krya!\n");
+}
