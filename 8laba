@@ -1,28 +1,48 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <windows.h>
-struct strany {
+
+struct strany {																	//создание структуры "страны"
 	char nazvanie[20];
 	char stolica[20];
 	int  god_osnovaniya;
-	int  kolvo_naseleniya;
+	int  naselenie;
 	int  ploshad;
-    };
+};
+int func(int i, strany svedeniya_o_stranah[20], int* N) {
+	for (i = 0; i < *N; i++) {
+		printf("Vvedite nazvanie strany: ");
+		scanf("%c", (svedeniya_o_stranah[i]).nazvanie);
+		printf("Vvedite stolicu strany: ");
+		scanf("%c", (svedeniya_o_stranah[i]).stolica);
+		printf("Vvedite god osnovaniya strany: ");
+		scanf("%d", (svedeniya_o_stranah[i]).god_osnovaniya);
+		printf("Vvedite naselenie strany: ");
+		scanf("%d", (svedeniya_o_stranah[i]).naselenie);
+		printf("Vvedite ploshad strany: ");
+		scanf("%d", (svedeniya_o_stranah[i]).ploshad);
+	}
+}
 int main() {
 	const int NotUsed = system("color B4");
-	strany svedeniya_o_stranah[20];
+	
+	strany svedeniya_o_stranah[20];												//массив структур "страны"
+	
 	int N = 0, k;
-	do {
+	do {																		//ввод количества стран
 		printf("Please, enter the number of countries (no more than 20): ");
 		scanf("%d", &N);
 	} while ((N <= 0) || (N > 20));
+	
 	k = N;
+	
 	//for (int i = 0; i < N; i++) {
 	//	scanf("%d", &svedeniya_o_stranah[i]);
 	//}
-	printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 201, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 203, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 203, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 203, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 203, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 187 );
-	printf("%c\t%c\t%c\t%c\t%c\t%c\t%c     %c%c%c%c%c%c\t%c\n", 186, 252, 186, 105, 186, 106, 186, 82, 101, 115, 117, 108, 116, 186);
+	printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 201,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,  203,  205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205, 203, 205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205, 203, 205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205, 203, 205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205, 187);
+	printf("%c%8c%c%c%c%c%c%c%c%8c%8c%c%c%c%c%c%c%8c%8c%c%c%c%c%c%c%8c%8c%c%c%c%c%c%c%c%c%8c%8c%c%c%c%c%c%c%8c\n", 186,  78,97,122,118,97,110,105,101,  186,  83,116,111,108,105,99,97, 186, 71,111,100,95,111,115,110, 186, 78,97,115,101,108,101,110,105,101, 186, 80,108,111,115,104,97,100, 186 );
+	printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 204, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 206, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 206, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 206, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 206, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 185);
 	//for (int i = 0; i < N; i++) {
-	//	printf("%d", &svedeniya_o_stranah[i]);
+	//	printf("%d", svedeniya_o_stranah[i]);
 	//}
 }
