@@ -1,48 +1,391 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <windows.h>
-
-struct strany {																	//создание структуры "страны"
+#include <string.h>
+#include <conio.h>
+struct strany {		
+	int nomer;
 	char nazvanie[20];
 	char stolica[20];
 	int  god_osnovaniya;
-	int  naselenie;
-	int  ploshad;
-};
-int func(int i, strany svedeniya_o_stranah[20], int* N) {
-	
-		printf("Vvedite nazvanie strany: ");
-		scanf("%c", (svedeniya_o_stranah[i]).nazvanie);
-		printf("Vvedite stolicu strany: ");
-		scanf("%c", (svedeniya_o_stranah[i]).stolica);
-		printf("Vvedite god osnovaniya strany: ");
-		scanf("%d", (svedeniya_o_stranah[i]).god_osnovaniya);
-		printf("Vvedite naselenie strany: ");
-		scanf("%d", (svedeniya_o_stranah[i]).naselenie);
-		printf("Vvedite ploshad strany: ");
-		scanf("%d", (svedeniya_o_stranah[i]).ploshad);
-	
-}
-int main() {
-	const int NotUsed = system("color B4");
-	
-	strany svedeniya_o_stranah[20];												//массив структур "страны"
-	
-	int N = 0, k;
-	do {																		//ввод количества стран
+	float  naselenie;
+	float  ploshad;
+} svedeniya_o_stranah[20];
+void menu();
+int o = 0, k1=0;
+ void vvod_bazy() {                        //ввод базы данных
+	char c=0;
+	int N = 0;
+	do {
 		printf("Please, enter the number of countries (no more than 20): ");
 		scanf("%d", &N);
 	} while ((N <= 0) || (N > 20));
+	for (int i = 0; i < N; i++) {
+int l = 0, j = i + 1;
+printf("Stroka %d\n", i + 1);
+svedeniya_o_stranah[i].nomer = i + 1;
+c = getchar();
+do {
+	l = 0;
+	printf("Vvedite nazvanie strany (ne bolee 20 simvolov): ");
+	while ((c = getchar()) != '\n') {
+		svedeniya_o_stranah[i].nazvanie[l] = c;
+		l++;
+	}
+	svedeniya_o_stranah[i].nazvanie[l] = '\0';
+} while ((l == 0) || (l > 20));
+do {
+	l = 0;
+	printf("Vvedite stolicu strany (ne bolee 20 simvolov): ");
+	while ((c = getchar()) != '\n') {
+		svedeniya_o_stranah[i].stolica[l] = c;
+		l++;
+	}
+	svedeniya_o_stranah[i].stolica[l] = '\0';
+} while ((l == 0) || (l > 20));
+
+
+do {
+	printf("Vvedite god osnovaniya strany (adekvatnyi): ");
+	scanf("%d", &svedeniya_o_stranah[i].god_osnovaniya);
+} while ((svedeniya_o_stranah[i].god_osnovaniya < (-5300)) || (svedeniya_o_stranah[i].god_osnovaniya > 2023));
+do {
+	printf("Vvedite naselenie strany (mln chelovek): ");
+	scanf("%f", &svedeniya_o_stranah[i].naselenie);
+} while (svedeniya_o_stranah[i].naselenie < 1);
+do {
+	printf("Vvedite ploshad strany (mln km^2): ");
+	scanf("%f", &svedeniya_o_stranah[i].ploshad);
+} while (svedeniya_o_stranah[i].ploshad < 1);
+k1++;
+	}
+	system("pause");
+	system("cls");
+
+}
+
+void vyvod_bazy() {                       //вывод базы данных
+	char c = 0;
+	printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 201, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 203, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 203, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 203, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 203, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 203, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 187);
+	printf("%c%11c%11c%7c%c%c%c%c%c%c%c%8c%8c%c%c%c%c%c%c%8c%8c%c%c%c%c%c%c%8c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%3c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%3c\n", 186, 252, 186, 78, 97, 122, 118, 97, 110, 105, 101, 186, 83, 116, 111, 108, 105, 99, 97, 186, 71, 111, 100, 32, 111, 115, 110, 186, 78, 97, 115, 101, 108, 101, 110, 105, 101, 40, 109, 108, 110, 32, 99, 104, 101, 108, 111, 118, 41, 186, 80, 108, 111, 115, 104, 97, 100, 40, 109, 108, 110, 32, 107, 109, '^', '2', 41, 186);
+	for (int i = 0; i < k1; i++)
+	{
+		printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 204, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 206, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 206, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 206, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 206, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 206, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 185);
+		printf("%c", 186);
+		printf("  %-19d", svedeniya_o_stranah[i].nomer);
+		printf("%c", 186);
+		printf("  %-19s", svedeniya_o_stranah[i].nazvanie);
+		printf("%c", 186);
+		printf("  %-19s", svedeniya_o_stranah[i].stolica);
+		printf("%c", 186);
+		if(svedeniya_o_stranah[i].god_osnovaniya>=0)
+			printf("  %-6d AC", svedeniya_o_stranah[i].god_osnovaniya);
+		else 
+			printf("  %-6d BC", svedeniya_o_stranah[i].god_osnovaniya);
+		printf("%11c", 186);
+		printf("  %-19.2f", svedeniya_o_stranah[i].naselenie);
+		printf("%c", 186);
+		printf("  %-19.2f", svedeniya_o_stranah[i].ploshad);
+		printf("%c\n", 186);
+	}
+	printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 200, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 202, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 202, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 202, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 202, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 202, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 188);
+	printf("do you want to re-enter the database?\n");
+	printf("1.  Yes\n");
+	printf("2.  Go back to the main menu");
+	c = _getch();
+	system("cls");
+	switch (c) {
+	case 1: {
+		vvod_bazy();
+	}
+	case 2: {
+		menu();
+	}
+	}
+}
+
+void add_line() {										//добавление строки в любое место
+	//HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	int d = 0, a = 0, l = 0, i=k1;
+	char c = 0;
+	printf("Enter the line number after which you want to add a new line (no more than %d): \n", k1+1);
+	scanf("%d", &a);
+	while ((a < 0) || (a > k1)) {
+		printf("Sorry,this line does not exist\n");
+		printf("Please, try again (no more than %d!!): ", k1);
+		scanf("%d", &a);
+	}
+	a--;
+	if (k1==a)
+		goto metka1;
 	
-	k = N;
+	do {
+		while (svedeniya_o_stranah[i].nazvanie[l] != '\0') {
+			svedeniya_o_stranah[i+1].nazvanie[l] = svedeniya_o_stranah[i].nazvanie[l];
+			l++;
+		}
+		svedeniya_o_stranah[i+1].nazvanie[l] = '\0';
+		l = 0;
+		while (svedeniya_o_stranah[i].stolica[l] != '\0') {
+			svedeniya_o_stranah[i+1].stolica[l] = svedeniya_o_stranah[i].stolica[l];
+			l++;
+		}
+		svedeniya_o_stranah[i+1].stolica[l] = '\0';
+		l = 0;
+	svedeniya_o_stranah[i+1].god_osnovaniya = svedeniya_o_stranah[i].god_osnovaniya;
+	svedeniya_o_stranah[i+1].naselenie= svedeniya_o_stranah[i].naselenie;
+	svedeniya_o_stranah[i+1].ploshad = svedeniya_o_stranah[i].ploshad;
+	svedeniya_o_stranah[i+1].nomer = svedeniya_o_stranah[i ].nomer+1;
+	i--;
+	} while (i > a);
+metka1:
+	a++;
+	c = getchar();
+	do {
+		l = 0;
+		printf("Vvedite nazvanie strany (ne bolee 20 simvolov): ");
+		while ((c = getchar()) != '\n') {
+			svedeniya_o_stranah[a].nazvanie[l] = c;
+			l++;
+		}
+		svedeniya_o_stranah[a].nazvanie[l] = '\0';
+	} while ((l == 0) || (l > 20));
+	do {
+		l = 0;
+		printf("Vvedite stolicu strany (ne bolee 20 simvolov): ");
+		while ((c = getchar()) != '\n') {
+			svedeniya_o_stranah[a].stolica[l] = c;
+			l++;
+		}
+		svedeniya_o_stranah[a].stolica[l] = '\0';
+	} while ((l == 0) || (l > 20));
+
+
+	do {
+		printf("Vvedite god osnovaniya strany (adekvatnyi): ");
+		scanf("%d", &svedeniya_o_stranah[a].god_osnovaniya);
+	} while ((svedeniya_o_stranah[a].god_osnovaniya < (-5300)) || (svedeniya_o_stranah[a].god_osnovaniya > 2023));
+	printf("Vvedite naselenie strany (mln chelovek): ");
+	scanf("%f", &svedeniya_o_stranah[a].naselenie);
+	printf("Vvedite ploshad strany (mln km^2): ");
+	scanf("%f", &svedeniya_o_stranah[a].ploshad);
+	svedeniya_o_stranah[a].nomer = a+1 ;
+
+	k1++;
+
+	//printf("Ispolzuite klavishi W and S for vibora stroki, posle kotoroy hotite dobavit new stroki. Press ENTER for vibora jelaemoi stroki.");
+	//for (int i = 0; i < k1; i++) {
+	//	c = _getch();
+	//	while ((c != 'w') || (c != 'W') || (c != 's') || (c != 'S')) {
+	//		printf("Ispolzuite klavishi W and S for vibora stroki, posle kotoroy hotite dobavit new stroki");
+	//		c = _getch();
+	//while (((c == 'W') || (c == 'w')) && (d == 0)) {
+	//		printf("Vy ne mojete vibrat tolko stroku nije. Poprobuite spustitsya nije ");
+	//		c = _getch();
+	//	}
+	//	while (((c == 'S') || (c == 's')) && (d == k1)){
+	//		printf("Vy ne mojete vibrat tolko stroku vish. Poprobuite spustitsya nije ");
+	//		c = _getch();
+	//	}
+	//	while (((c == 'W') || (c == 'w'))||((c=='S')||(c=='s')) && (d<k1) && (d>0)) {
+	//		if (((c == 'W') || (c == 'w')) && (d != 0)) {
+	//		}
+	//	}
+	//}
+
+
+	system("pause");
+	system("cls");
+}	
+/*void cvetnoe() {                                                             //МЕНЯТЬЦВЕТ ТЕКСТА когда передвигаешься по консоли
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+	printf("Database menu (Move with W and S keys):\n");
+	SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | BACKGROUND_BLUE| BACKGROUND_GREEN);
+	printf("yellow on blue\n");
+}*/
+void delete_line() {											//удаление любой строки
+	int a = 0, l = 0;
+	while ((a <= 0) || (a > k1)) {
+		printf("Please enter the line number you want to delete (no more than %d): ", k1);
+		scanf("%d", &a);
+	}
+	int i = a-1;
+	do {
+		while (svedeniya_o_stranah[i+1].nazvanie[l] != '\0') {
+			svedeniya_o_stranah[i].nazvanie[l] = svedeniya_o_stranah[i+1].nazvanie[l];
+			l++;
+		}
+		svedeniya_o_stranah[i].nazvanie[l] = '\0';
+		l = 0;
+		while (svedeniya_o_stranah[i+1].stolica[l] != '\0') {
+			svedeniya_o_stranah[i].stolica[l] = svedeniya_o_stranah[i+1].stolica[l];
+			l++;
+		}
+		svedeniya_o_stranah[i].stolica[l] = '\0';
+		l = 0;
+		svedeniya_o_stranah[i].god_osnovaniya = svedeniya_o_stranah[i+1].god_osnovaniya;
+		svedeniya_o_stranah[i].naselenie = svedeniya_o_stranah[i+1].naselenie;
+		svedeniya_o_stranah[i].ploshad = svedeniya_o_stranah[i+1].ploshad;
+		svedeniya_o_stranah[i].nomer = svedeniya_o_stranah[i+1].nomer-1;
+		i++;
+	} while (i<k1);
+	k1--;
+}
+
+void poln() {
+	char c;
+	int v = 0, l = 0, j, isko;
+	char iskomoe[20];
+	printf("Please select the column to search for: \n");
+	printf("1. Po nomeru\n");
+	printf("2. Po nazvaniu\n");
+	printf("3. Po stolice\n");
+	printf("4. Po godu obrazovaniya\n");
+	printf("5. Po chislennosti naseleniya\n");
+	printf("6. Po ploshadi strany\n");
+	c = _getch();
+	c -= 48;
 	
-	//for (int i = 0; i < N; i++) {
-	//	scanf("%d", &svedeniya_o_stranah[i]);
-	//}
-	printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 201,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,  203,  205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205, 203, 205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205, 203, 205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205, 203, 205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205, 187);
-	printf("%c%8c%c%c%c%c%c%c%c%8c%8c%c%c%c%c%c%c%8c%8c%c%c%c%c%c%c%8c%8c%c%c%c%c%c%c%c%c%8c%8c%c%c%c%c%c%c%8c\n", 186,  78,97,122,118,97,110,105,101,  186,  83,116,111,108,105,99,97, 186, 71,111,100,95,111,115,110, 186, 78,97,115,101,108,101,110,105,101, 186, 80,108,111,115,104,97,100, 186 );
-	printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n", 204, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 206, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 206, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 206, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 206, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 205, 185);
-	//for (int i = 0; i < N; i++) {
-	//	printf("%d", svedeniya_o_stranah[i]);
-	//}
+	switch (c) {
+	case 1: {
+		system("cls");
+		do {
+			printf("Please enter the number you are looking for: ");
+			scanf("%d", &isko);
+		} while ((isko <= 0) || (isko > 20));
+		for (int i = 0; i <= k1; i++) {
+				if (isko == svedeniya_o_stranah[i].nomer)
+				printf("%s\n", svedeniya_o_stranah[i].nomer);
+		}
+		system("pause");
+	}
+	case 2: {
+		system("cls");
+		printf("Please enter the word you are looking for: ");
+		c = getchar();
+		while ((c = getchar()) != '\n') {
+			iskomoe[v] = c;
+			v++;
+		}
+		iskomoe[v] = '\0';
+		for (int i = 0; i <= k1; i++) {
+			l = 0;
+			for (j = 0; svedeniya_o_stranah[i].nazvanie[j] != '\0'; j++) {
+				if (iskomoe[j] == svedeniya_o_stranah[i].nazvanie[j])
+					l++;
+				else
+					break;
+			}
+			if (l == v)
+				printf("%s\n", svedeniya_o_stranah[i].nazvanie);
+		}
+		system("pause");
+	}
+
+
+
+	case 3: {
+		system("cls");
+		printf("Please enter the word you are looking for: ");
+		c = getchar();
+		while ((c = getchar()) != '\n') {
+			iskomoe[v] = c;
+			v++;
+		}
+		iskomoe[v] = '\0';
+		for (int i = 0; i <= k1; i++) {
+			l = 0;
+			for (j = 0; svedeniya_o_stranah[i].stolica[j] != '\0'; j++) {
+				if (iskomoe[j] == svedeniya_o_stranah[i].stolica[j])
+					l++;
+				else
+					break;
+			}
+			if (l == v)
+				printf("%s\n", svedeniya_o_stranah[i].stolica);
+		}
+	}
+		  system("pause");
+	}
+}
+
+void menu(){
+	//printf("Database menu (Move with W and S keys):\n");  поместить в блок перемещения по таблице
+	printf("Vyberite deystvie\n");
+	printf("1.  Database entry\n");
+	printf("2.  Database output\n");
+	printf("3.  Add line\n");
+	printf("4.  Poisk\n");
+	printf("5.  Delete line\n");
+	printf("6.  Exit\n");
+	
+	char cif, p;
+	
+	cif =_getch();
+	cif = cif - 48;
+	switch (cif)
+	{
+	case 1: {
+		system("cls");
+		vvod_bazy(); 
+		break;
+	}
+
+	case 2: {
+		system("cls");
+		vyvod_bazy();
+		break;
+	}
+
+	case 3: {
+		system("cls");
+		add_line();
+		break;
+	}
+	case 4: {
+		system("cls");
+		printf("Please select the search format:\n");
+		//printf("1.  Chastichnyi poisk\n");
+		printf("2.  Polnyi poisk\n");
+		p = _getch();
+		p -= 48;
+		switch (p) {
+		/*case 1: {
+			chast();
+			creak;
+		}*/
+		case 2: {
+			system("cls");
+			poln();
+			break;
+		}
+		}
+	}
+	case 5: {
+		system("cls");
+        delete_line();
+		break;
+	}
+	
+	case 6: {
+		system("cls");
+		printf("Goodbye!");
+		system("pause");
+		o = 1;
+		break;
+	}
+
+	default:
+		printf("Please, enter a number from 1 to 6 inclusive:\n");
+		break;
+	}
+}
+int main() {
+	const int NotUsed = system("color B4");
+	while (o != 1) {
+		menu();
+	}
+	
 }
