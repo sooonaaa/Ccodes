@@ -1,0 +1,102 @@
+в main
+
+// lapochka9 Создать класс, осуществляющий циклический сдвиг одномерного массива на 2 позиции вправо.
+// Осуществить циклический сдвиг элементов столбцов двумерной матрицы на Х позиций(Х кратно 2 - м).
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include "Sdvigatel.h"
+#include <conio.h>
+#include<windows.h>
+int main()
+{
+	printf("What do you want to do?\n");
+	printf("1. shift of a one-dimensional array by 2 positions to the right;\n");
+	printf("2. shift of elements of columns of a two-dimensional matrix by X positions downwards;\n");
+	printf("3. shift of elements of columns of a two-dimensional matrix by X positions up;\n");
+	//printf("4. shift of elements of columns of a two-dimensional matrix by X positions to the right;\n");
+	//printf("5. shift of elements of columns of a two-dimensional matrix by X positions to the left;\n");
+	int k = 0;
+  	char c;
+	c = _getch();
+	c -= 48;
+	system("cls");
+	switch (c) {
+	case 1: {
+		printf("Please enter the array (5 digits:) ");
+		Sdvigatel sdvig;
+		sdvig.Dvigat();
+		break;
+	}
+	case 2:{
+		printf("Please enter the two-dimensional array by columns (5x5):\n");
+		Sdvigatel sdvig[5];
+		for (int i = 0; i < 5; i++) 
+			sdvig[i].Dvigat();
+		break;
+
+	}
+	case 3: {
+		printf("Please enter the two-dimensional array by columns (5x5):\n");
+		Sdvigatel sdvig[5];
+		for (int i = 0; i < 5; i++)
+		sdvig[i].Dvigat();
+		break;
+	}
+	}
+	
+
+}
+
+в Sdvigatel.cpp
+
+#define _CRT_SECURE_NO_WARNINGS
+#include "Sdvigatel.h"
+#include <stdio.h>
+
+Sdvigatel::Sdvigatel() {
+		/*printf("Please enter the number of array elements: ");
+		scanf("%d", &kolvo);*/
+	for (int i = 0; i < 5; i++) {
+		scanf("%d", &A[i]);
+	}
+}
+void Sdvigatel::Dvigat() {
+			/*for (int i = kolvo - 3; i >= 0; i--)
+				A[i + 2] = A[i];
+		if (kolvo == 19)
+			for (int i = kolvo - 2; i >= 0; i--) {
+				A[i + 2] = A[i];
+	for (int i = kolvo-1; i >= 0; i--) 
+		A[i + 2] = A[i];*/
+	for (int i = 5 - 3; i >= 0; i--) 
+		A[i + 2] = A[i];
+	A[0] = 0;
+	A[1] = 0;
+	
+	printf("Array after shift: ");
+	for (int i = 0; i < 5; i++) {
+		printf("%d ", A[i]);
+	}
+}
+void Vivod() {
+
+}
+
+
+в Sdvigatel.h
+
+#pragma once
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+class Sdvigatel
+{
+private:
+	int A[5];
+	int kolvo;
+public:
+	Sdvigatel();
+	void Dvigat();
+	void Vivod();
+};
