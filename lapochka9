@@ -16,7 +16,7 @@ int main()
 	printf("3. shift of elements of columns of a two-dimensional matrix by X positions up;\n");
 	//printf("4. shift of elements of columns of a two-dimensional matrix by X positions to the right;\n");
 	//printf("5. shift of elements of columns of a two-dimensional matrix by X positions to the left;\n");
-	int k = 0б l=0;
+	int k = 0, l=0;
   	char c;
 	c = _getch();
 	c -= 48;
