@@ -38,9 +38,16 @@ int main()
 			printf("please enter how many positions you want to shift the matrix (the number of positions is a multiple of two): \n");
 				scanf("%d", &k);
 			} while ((k % 2) != 0);
+       if(k==0)
+         l=0;
+       else
+         l=1;
 			for (k = k / 2; k > 0; k--)
 		    for (int i = 0; i < 5; i++) 
 			sdvig[i].Dvigat();
+     if (l==0)
+      printf("Array did not dvigalsya");
+     else{
 		printf("Array after shift: \n");
 		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < 5; j++) {
@@ -48,6 +55,7 @@ int main()
 			}
 			printf("\n");
 		}
+}
 		break;
 
 	}
@@ -58,10 +66,17 @@ int main()
 			printf("please enter how many positions you want to shift the matrix (the number of positions is a multiple of two): \n");
 			scanf("%d", &k);
 		} while ((k % 2) != 0);
-		
+		if(k==0)
+         l=0;
+       else
+         l=1;
+
 		for (k = k / 2; k > 0; k--)
 		for (int i = 0; i < 5; i++)
 		sdvig[i].DvigatVverh(i);
+      if(l==0)
+     printf("Array did not dvigalsya");
+     else{
 		printf("Array after shift: \n");  
 		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < 5; j++) {
@@ -69,6 +84,7 @@ int main()
 			}
 			printf("\n");
 		}
+}
 		break;
 	}
 	}
