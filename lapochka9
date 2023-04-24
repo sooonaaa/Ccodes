@@ -16,31 +16,59 @@ int main()
 	printf("3. shift of elements of columns of a two-dimensional matrix by X positions up;\n");
 	//printf("4. shift of elements of columns of a two-dimensional matrix by X positions to the right;\n");
 	//printf("5. shift of elements of columns of a two-dimensional matrix by X positions to the left;\n");
-	int k = 0;
+	int k = 0б l=0;
   	char c;
 	c = _getch();
 	c -= 48;
 	system("cls");
 	switch (c) {
 	case 1: {
-		printf("Please enter the array (5 digits:) ");
+		printf("Please enter the array (5 digits): ");
 		Sdvigatel sdvig;
 		sdvig.Dvigat();
+		printf("Array after shift: \n");
+		for (int i = 0; i < 5; i++)
+		sdvig.Vivod(i);
 		break;
 	}
 	case 2:{
 		printf("Please enter the two-dimensional array by columns (5x5):\n");
 		Sdvigatel sdvig[5];
-		for (int i = 0; i < 5; i++) 
+		do {
+			printf("please enter how many positions you want to shift the matrix (the number of positions is a multiple of two): \n");
+				scanf("%d", &k);
+			} while ((k % 2) != 0);
+			for (k = k / 2; k > 0; k--)
+		    for (int i = 0; i < 5; i++) 
 			sdvig[i].Dvigat();
+		printf("Array after shift: \n");
+		for (int i = 0; i < 5; i++) {
+			for (int j = 0; j < 5; j++) {
+				sdvig[j].Vivod(i);
+			}
+			printf("\n");
+		}
 		break;
 
 	}
 	case 3: {
 		printf("Please enter the two-dimensional array by columns (5x5):\n");
 		Sdvigatel sdvig[5];
+		do {
+			printf("please enter how many positions you want to shift the matrix (the number of positions is a multiple of two): \n");
+			scanf("%d", &k);
+		} while ((k % 2) != 0);
+		
+		for (k = k / 2; k > 0; k--)
 		for (int i = 0; i < 5; i++)
-		sdvig[i].Dvigat();
+		sdvig[i].DvigatVverh(i);
+		printf("Array after shift: \n");  
+		for (int i = 0; i < 5; i++) {
+			for (int j = 0; j < 5; j++) {
+				sdvig[j].Vivod(i);
+			}
+			printf("\n");
+		}
 		break;
 	}
 	}
@@ -79,8 +107,16 @@ void Sdvigatel::Dvigat() {
 		printf("%d ", A[i]);
 	}
 }
-void Vivod() {
+void Sdvigatel::DvigatVverh(int i) {
+	for (int i = 0; i <5; i++)
+		A[i] = A[i+2];
+	A[3] = 0;
+	A[4] = 0;
+}
 
+
+void Sdvigatel::Vivod(int i) {
+		printf("%d ", A[i]);
 }
 
 
@@ -98,5 +134,6 @@ private:
 public:
 	Sdvigatel();
 	void Dvigat();
-	void Vivod();
+	void DvigatVverh(int);
+	void Vivod(int);
 };
