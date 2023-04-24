@@ -1,0 +1,185 @@
+в main
+
+// lapochka9 Создать класс, осуществляющий циклический сдвиг одномерного массива на 2 позиции вправо.
+// Осуществить циклический сдвиг элементов столбцов двумерной матрицы на Х позиций(Х кратно 2 - м).
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include "Sdvigatel.h"
+#include <conio.h>
+#include<windows.h>
+int main()
+{
+	printf("What do you want to do?\n");
+	printf("1. shift of a one-dimensional array by 2 positions to the right;\n");
+	printf("2. shift of elements of columns of a two-dimensional matrix by X positions to the right;\n");
+	printf("3. shift of elements of columns of a two-dimensional matrix by X positions to the left;\n");
+	//printf("4. shift of elements of columns of a two-dimensional matrix by X positions to the right;\n");
+	//printf("5. shift of elements of columns of a two-dimensional matrix by X positions to the left;\n");
+	int k = 0, l = 0, kolvo=0;
+	char c;
+    c=_getch();
+	c -= 48;
+	system("cls");
+	switch (c) {
+	case 1: {
+		do{
+		printf("Vvedite kolvo chisel v massive (ne bolshe 20): ");
+		scanf("%d", &kolvo);
+		}while ((kolvo>20)||(kolvo<0));
+		Sdvigatel sdvig;
+		printf("Vvedite massiv: ");
+		sdvig.ZadanieMassiva(kolvo);
+		sdvig.Dvigat(kolvo);
+		printf("Array after shift: \n");
+		for (int i = 0; i < kolvo; i++)
+			sdvig.Vivod(i);
+		system("pause");
+		break;
+	}
+	case 2: {
+		//printf("Please enter the two-dimensional array by columns (5x5):\n");
+		int stroki;
+		Sdvigatel sdvig[20];
+		do {
+			printf("Please, enter the NxM array (no more than 20x20): ");
+			scanf("%d %d", &kolvo, &stroki);
+		} while ((kolvo > 20) || (stroki > 20) || (kolvo < 0) || (stroki < 0));
+		printf("Vvedite massiv\n");
+		for(int j=0; j<stroki; j++)
+			sdvig[j].ZadanieMassiva(kolvo);
+		do {
+			printf("please enter how many positions you want to shift the matrix (the number of positions is a multiple of two): \n");
+			scanf("%d", &k);
+		} while (((k % 2) != 0)||(k<0));
+		if (k == 0)
+			l = 0;
+		else
+			l = 1;
+		for (k = k / 2; k > 0; k--) {
+			for (int i = 0; i < kolvo; i++) {
+				sdvig[i].Dvigat(kolvo);
+			}
+		}
+		if (l == 0) {
+			printf("Array did not dvigalsya\n");
+			for (int i = 0; i < kolvo; i++) {
+				for (int j = 0; j < 5; j++) {
+					sdvig[j].Vivod(i);
+				}
+				printf("\n");
+			}
+		}
+		else {
+			printf("Array after shift: \n");
+			for (int i = 0; i < 5; i++) {
+				for (int j = 0; j < 5; j++) {
+					sdvig[i].Vivod(j);
+				}
+				printf("\n");
+			}
+		}
+		system("pause");
+		break;
+
+	}
+	case 3: {
+		printf("Please enter the two-dimensional array by columns (5x5):\n");
+		Sdvigatel sdvig[5];
+		do {
+			printf("please enter how many positions you want to shift the matrix (the number of positions is a multiple of two): \n");
+			scanf("%d", &k);
+		} while (((k % 2) != 0) || (k < 0));
+		if (k == 0)
+			l = 0;
+		else
+			l = 1;
+
+		for (k = k / 2; k > 0; k--)
+			for (int i = 0; i < 5; i++)
+				sdvig[i].DvigatVverh(i);
+		if (l == 0) {
+			printf("Array did not dvigalsya\n");
+			for (int i = 0; i < 5; i++) {
+				for (int j = 0; j < 5; j++) {
+					sdvig[j].Vivod(i);
+				}
+				printf("\n");
+			}
+		}
+		else {
+			printf("Array after shift: \n");
+			for (int i = 0; i < 5; i++) {
+				for (int j = 0; j < 5; j++) {
+					sdvig[j].Vivod(i);
+				}
+				printf("\n");
+			}
+		}
+		system("pause");
+		break;
+	}
+	}
+}
+
+B Sdvigatel.h
+
+#pragma once
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+class Sdvigatel
+{
+private:
+	int A[20];
+	int kolvo;
+public:
+	//Sdvigatel();
+	void Dvigat(int);
+	void DvigatVverh(int);
+	void Vivod(int);
+	void ZadanieMassiva(int);
+};
+
+
+B Sdvgatel.cpp
+
+#define _CRT_SECURE_NO_WARNINGS
+#include "Sdvigatel.h"
+#include <stdio.h>
+
+//Sdvigatel::Sdvigatel() {
+//	printf("Please enter the number of array elements: ");
+//	scanf("%d", &kolvo);
+//	for (int i = 0; i < 5; i++) {
+//		scanf("%d", &A[i]);
+//	}
+//}
+void Sdvigatel::Dvigat(int kolvo) {
+	int p = 0, zapom1 = 0, zapom2 = 0;
+		zapom1 = A[kolvo - 1];
+		zapom2 = A[kolvo - 2];
+		for (int i = kolvo - 3; i >= 0; i--) {
+			A[i + 2] = A[i];
+		}
+		A[0] = zapom2;
+		A[1] = zapom1;
+}
+void Sdvigatel::DvigatVverh(int i) {
+	int p = 0;
+	for (int i = 0; i < 5; i++)
+		A[i] = A[i + 2];
+	A[3] = 0;
+	A[4] = 0;
+}
+
+
+void Sdvigatel::Vivod(int i) {
+	printf("%d ", A[i]);
+}
+
+void Sdvigatel::ZadanieMassiva(int kolvo) {
+for (int i = 0; i < kolvo; i++) {
+		scanf("%d", &A[i]);
+	}
+}
