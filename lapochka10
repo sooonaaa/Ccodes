@@ -1,0 +1,73 @@
+в main:
+
+//Создать класс, определяющий одномерный массив и содержащий функцию, осуществляющую поиск максимального из чётных элементов массива.
+//Перегрузить операцию сложения для создания массива из максимальных чётных элементов строк.
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include "Searcher.h"
+int main()
+{
+	int kolvo=0, maximum;
+	do {
+		printf("Vvedite kolvo chisel v massive (ne bolshe 20): ");
+		scanf("%d", &kolvo);
+	} while ((kolvo > 20) || (kolvo < 0));
+	Searcher poisk;
+	printf("Vvedite massiv: ");
+	poisk.ZadanieMassiva(kolvo);
+	maximum = poisk.Chetnoe(kolvo); 
+	if (maximum == -1)
+		printf("Net maximalnogo chetnogo elementa v stroke");
+	else
+		printf("Maximalnoe chetnoe chislo: %d", maximum);
+}
+
+
+В cpp
+
+#define _CRT_SECURE_NO_WARNINGS
+#include "Searcher.h"
+#include <stdio.h>
+
+int Searcher::Chetnoe(int kolvo) {
+	int i, max=0, k=0, l=-1;
+	for (i = 0; i < kolvo; i++) {
+		if (A[i] % 2 == 0) {
+			max = A[i];
+			break;
+		}
+	}
+	for (int j=i; j < kolvo; j++) {
+		if ((A[j] > max) && (A[j] % 2 == 0)) {
+			max = A[j];
+			k = 1;
+		}
+	}
+	if (k == 1)
+		return max;
+	else
+		return l;
+}
+void Searcher::ZadanieMassiva(int kolvo) {
+	for (int i = 0; i < kolvo; i++) {
+		scanf("%d", &A[i]);
+	}
+}
+
+
+В .h
+
+#pragma once
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+class Searcher
+{
+private:
+	int A[20];
+	int max;
+public:
+	int Chetnoe(int);
+	void ZadanieMassiva(int);
+};
+
